@@ -23,7 +23,7 @@
 #include <search.h>
 
 int64_t nverts_known = 0;
-int *degrees;
+unsigned int *degrees;
 int64_t *column;
 float *weights;
 extern oned_csr_graph g; //from bfs_reference for isisolated function
@@ -80,7 +80,7 @@ void convert_graph_to_oned_csr(const tuple_graph* const tg, oned_csr_graph* cons
 	int64_t nvert=tg->nglobaledges/2;
 	nvert/=num_pes();
 	nvert+=1;
-	degrees=xcalloc(nvert,sizeof(int));
+	degrees=xcalloc(nvert,sizeof(unsigned int));
 
 	aml_register_handler(halfedgehndl,1);
 	int numiters=ITERATE_TUPLE_GRAPH_BLOCK_COUNT(tg);
@@ -131,7 +131,7 @@ void convert_graph_to_oned_csr(const tuple_graph* const tg, oned_csr_graph* cons
 
 	g->notisolated=g->nglobalverts-isolated;
 #endif
-	unsigned int *rowstarts = xmalloc((nlocalverts + 1) * sizeof(int));
+	unsigned int *rowstarts = xmalloc((nlocalverts + 1) * sizeof(unsigned int));
 	g->rowstarts = rowstarts;
 
 	rowstarts[0] = 0;
