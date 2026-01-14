@@ -18,7 +18,7 @@ unsigned long *visited;
 int64_t visited_size;
 
 int64_t *pred_glob,*column;
-int *rowstarts;
+unsigned int *rowstarts;
 oned_csr_graph g;
 
 //user should provide this function which would be called once to do kernel 1: graph convert
